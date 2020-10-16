@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="blog" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" length="500" name="name" nullable="false" comment="Name"/>
+        <column xsi:type="varchar" length="500" name="short_description" nullable="false" comment="Short Description"/>
+        <column xsi:type="varchar" length="1000" name="description" nullable="false" comment="Description"/>
+        <column xsi:type="boolean" name="status" nullable="false" comment="Status"/>
+        <column xsi:type="varchar" length="255" name="thumbnail" nullable="true" comment="Thumbnail"/>
+        <column xsi:type="timestamp" name="publish_date_from" nullable="false" default="CURRENT_TIMESTAMP" comment="Publish from"/>
+        <column xsi:type="timestamp" name="publish_date_to" nullable="false" default="CURRENT_TIMESTAMP" comment="Publish to"/>
+        <column xsi:type="varchar" length="255" name="url_key" nullable="false" comment="Url Key"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+    <table name="blog_category" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="blog_category_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Blog_Category_ID"/>
+        <column xsi:type="varchar" length="500" name="name" nullable="false" comment="Category Name"/>
+        <column xsi:type="int" name="parent_id" nullable="false" comment="Parent ID"/>
+        <column xsi:type="varchar" length="1000" name="path" nullable="false" comment="Path"/>
+        <column xsi:type="timestamp" name="create_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Create"/>
+        <column xsi:type="timestamp" name="update_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Update"/>
+        <column xsi:type="int" name="level" nullable="false" comment="Level"/>
+        <column xsi:type="int" name="children_count" nullable="false" comment="Children Count"/>
+        <column xsi:type="varchar" length="1000" name="url_key" nullable="false" comment="URL Key"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="blog_category_id"/>
+        </constraint>
+    </table>
+    <table name="blog_gallery" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="blog_gallery_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Blog_Category_ID"/>
+        <column xsi:type="varchar" length="500" name="path" nullable="false" comment="Gallery Path"/>
+        <column xsi:type="timestamp" name="create_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Create"/>
+        <column xsi:type="timestamp" name="update_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Update"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="blog_gallery_id"/>
+        </constraint>
+    </table>
+    <table name="blog_tags" resource="default" engine="innodb" comment="tags">
+        <column xsi:type="int" name="blog_tags_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Blog_Category_ID"/>
+        <column xsi:type="varchar" length="500" name="tags" nullable="false" comment="Tags"/>
+        <column xsi:type="timestamp" name="create_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Create"/>
+        <column xsi:type="timestamp" name="update_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Update"/>
+        <column xsi:type="varchar" length="1000" name="url_key" nullable="false" comment="URL Key"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="blog_tags_id"/>
+        </constraint>
+    </table>
+    <table name="blog_related_product_blog" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" comment="Product ID"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_PRODUCT_BLOG" table="blog_related_product_blog"
+        column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id"
+        onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_BLOG_PRODUCT" table="blog_related_product_blog"
+        column="id" referenceTable="blog" referenceColumn="id"
+        onDelete="CASCADE"/>
+    </table>
+    <table name="blog_related_category_blog" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID"/>
+        <column xsi:type="int" name="blog_category_id" padding="10" unsigned="true" nullable="false" comment="Blog_Category_ID"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_CATEGORY_BLOG" table="blog_related_category_blog"
+        column="id" referenceTable="blog" referenceColumn="id"
+        onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_BLOG_CATEGORY" table="blog_related_category_blog"
+        column="blog_category_id" referenceTable="blog_category" referenceColumn="blog_category_id"
+        onDelete="CASCADE"/>
+    </table>
+    <table name="blog_related_gallery_blog" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID"/>
+        <column xsi:type="int" name="blog_gallery_id" padding="10" unsigned="true" nullable="false" comment="Blog_Category_ID"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_GALLERY_BLOG" table="blog_related_gallery_blog"
+                    column="id" referenceTable="blog" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_BLOG_GALLERY" table="blog_related_gallery_blog"
+                    column="blog_gallery_id" referenceTable="blog_gallery" referenceColumn="blog_gallery_id"
+                    onDelete="CASCADE"/>
+    </table>
+    <table name="blog_related_tags_blog" resource="default" engine="innodb" comment="blog">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID"/>
+        <column xsi:type="int" name="blog_tags_id" padding="10" unsigned="true" nullable="false" comment="Blog_Category_ID"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_TAGS_BLOG" table="blog_related_tags_blog"
+                    column="id" referenceTable="blog" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_RELATED_BLOG_TAGS" table="blog_related_tags_blog"
+                    column="blog_tags_id" referenceTable="blog_tags" referenceColumn="blog_tags_id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>

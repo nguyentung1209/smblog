@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="loginToAddToCart" instance="SM\Blog\Observer\loginToAddToCart" />
+    </event>
+<!--    <event name="checkout_cart_product_add_after">-->
+<!--        <observer name="changePrice" instance="MyCompany\MyModule\Observer\change" />-->
+<!--    </event>-->
+</config>

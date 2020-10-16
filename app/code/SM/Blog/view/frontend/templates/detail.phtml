@@ -1,0 +1,143 @@
+<?php
+/**
+ * @var Detail $block
+ */
+
+use SM\Blog\Block\Detail;
+
+//var_dump($block->getBlogDetail()['gallery']);
+?>
+<head>
+    <meta charset="utf-8">
+    <meta name="title" content="Shopo makes shopping social with its latest app update - Blog MX for Magento 2 / Magento 2 Demo Store">
+    <meta name="description" content="Shopo makes shopping social with its latest app update">
+    <meta name="keywords" content="Shopo makes shopping social with its latest app update">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>Shopo makes shopping social with its latest app update - Blog MX for Magento 2 / Magento 2 Demo Store</title>
+    <link rel="stylesheet" type="text/css" media="all" href="http://blog.m2.mirasvit.com/static/version1587552010/_cache/merged/A.729bd1e954c6c9e6e54890fe6c0bf82a.min.css.pagespeed.cf.xEmtgFGQoZ.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/css/styles-l.min.css">
+    <link rel="stylesheet" type="text/css" media="print" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/css/A.print.min.css.pagespeed.cf.-KpZJJQ_YG.css">
+    <link rel="icon" type="image/x-icon" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/Magento_Theme/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" media="all" href="http://blog.m2.mirasvit.com/media/A.styles.css.pagespeed.cf.irfc9yEYdE.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+</head>
+<?php if ($block->getBlogDetail() && $block->getBlogDetail() != false):
+    $blockDetail = $block->getBlogDetail();
+?>
+<div class="breadcrumbs">
+    <ul class="items">
+        <li class="item home">
+            <a href="http://blog.m2.mirasvit.com/" title="Go to Home Page">
+                Home </a>
+        </li>
+        <li class="item blog">
+            <a href="/blog" title="Blog MX">
+                Blog MX </a>
+        </li>
+        <li class="item postname">
+            <strong><?= $blockDetail['name'] ?></strong>
+        </li>
+    </ul>
+</div>
+    <div class="page-title-wrapper">
+        <h1 class="page-title">
+            <span class="base" data-ui-id="page-title-wrapper"><?= $blockDetail['name'] ?></span>
+        </h1>
+    </div>
+    <div class="page messages"><div data-placeholder="messages"></div>
+        <div data-bind="scope: 'messages'">
+            <!-- ko if: cookieMessages && cookieMessages.length > 0 --><!-- /ko -->
+            <!-- ko if: messages().messages && messages().messages.length > 0 --><!-- /ko -->
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column main"><input name="form_key" type="hidden" value="C4f4iOJ76a3WDZFi">
+            <div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
+                <script>window.authenticationPopup={"autocomplete":"off","customerRegisterUrl":"http:\/\/blog.m2.mirasvit.com\/customer\/account\/create\/","customerForgotPasswordUrl":"http:\/\/blog.m2.mirasvit.com\/customer\/account\/forgotpassword\/","baseUrl":"http:\/\/blog.m2.mirasvit.com\/"};
+                </script>
+                <!-- ko template: getTemplate() -->
+                <!-- /ko -->
+            </div>
+            <div class="blog__post-view">
+                <p class="blog__post-meta">
+                    <time class="blog__post-meta-time" itemprop="datePublished">
+                        <i class="fa fa-fw fa-calendar"></i>
+                        <?= $blockDetail['publish_date_from'] ?>
+                    </time>
+                    <span class="blog__post-meta-author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <i class="fa fa-fw fa-user"></i>
+                    <span itemprop="name">
+                        <a href="http://blog.m2.mirasvit.com/blog/author/1/">Katie Couris</a>
+                    </span>
+                    </span>
+                    <span class="blog__post-meta-comments">
+                    <i class="fa fa-fw fa-comments"></i>
+                    <span class="disqus-comment-count" data-disqus-identifier="shopo-makes-shopping-social-with-its-latest-app-update">0 Comments</span>
+                    </span>
+                </p>
+                <?php foreach ($blockDetail['gallery'] as $gallery): ?>
+                <img data-pagespeed-high-res-src="/pub/media/blog/<?= $gallery['path'] ?>" height="400px" width="600px" class="blog__post-featured-image" data-pagespeed-url-hash="2967449089" src="/pub/media/blog/<?= $gallery['path'] ?>" onload="pagespeed.switchToHighResAndMaybeBeacon(this);" onerror="this.onerror=null;pagespeed.switchToHighResAndMaybeBeacon(this);">
+                <?php endforeach; ?>
+                <p><?= $blockDetail['description'] ?></p>
+                <footer class="blog__post-footer">
+                    <span class="blog__post-footer-categories">
+                        <i class="fa fa-fw fa-folder-open"></i>
+                        <?php foreach ($blockDetail['categories'] as $category): ?>
+                        <a href="http://blog.m2.mirasvit.com/blog/fashion.html" rel="category tag"><?= $category['name'] ?></a>
+                        <?php endforeach; ?>
+                    </span>
+                    <span class="blog__post-footer-tags">
+                        <i class="fa fa-fw fa-tags"></i>
+                        <?php foreach ($blockDetail['tags'] as $tag): ?>
+                        <a href="http://blog.m2.mirasvit.com/blog/tag/shopping/" rel="tag"><?= $tag['tags'] ?></a>
+                        <?php endforeach; ?>
+                    </span>
+                </footer>
+                <div class="blog__post-view-related-products">
+                    <div class="block-title">Related Products</div>
+                    <ol>
+                        <div class="products wrapper grid products-grid">
+                            <ol class="products list items product-items">
+                                <?php foreach ($blockDetail['products'] as $product): ?>
+                                <li class="item product product-item">
+                                    <div class="product-item-info">
+                                        <a href="<?= $product['url_key'] ?>" class="product photo product-item-photo">
+                                            <span class="product-image-container" style="width:152px;">
+                                                <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                                                    <img class="product-image-photo" max-width="152" max-height="190" alt="<?= $product['name'] ?>"
+                                                         data-pagespeed-url-hash="3833278295" src="/pub/media/catalog/product<?= $product['image'] ?>"
+                                                         onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
+                                                    >
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="product details product-item-details">
+                                            <strong class="product name product-item-name">
+                                                <a class="product-item-link" title="Driven Backpack" href="<?= $product['url_key'] ?>">
+                                                    <?= $product['name'] ?>
+                                                </a>
+                                            </strong>
+                                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="<?= $product['id'] ?>" data-price-box="product-id-<?= $product['id'] ?>">
+                                                <span class="price-container price-final_price tax weee">
+                                                    <span id="product-price-<?= $product['id'] ?>" data-price-amount="<?= $product['price'] ?>" data-price-type="finalPrice" class="price-wrapper ">
+                                                        <span class="price">$<?= $product['price'] ?>.00</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>
+                            </ol>
+                        </div>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+<h2>This blog no longer exist!</h2>
+<?php endif;?>

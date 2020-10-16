@@ -1,0 +1,70 @@
+<?php
+/**
+ * @var \SM\Blog\Block\Search $block
+ */
+//var_dump($block->getTagsByBlogId(1));
+?>
+<html>
+<body>
+<head>
+    <link rel="stylesheet" type="text/css" media="all" href="http://blog.m2.mirasvit.com/static/version1587552010/_cache/merged/A.729bd1e954c6c9e6e54890fe6c0bf82a.min.css.pagespeed.cf.mID8sqjDck.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/css/styles-l.min.css">
+    <link rel="stylesheet" type="text/css" media="print" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/css/A.print.min.css.pagespeed.cf.-KpZJJQ_YG.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+</head>
+<div class="blog__post-list-wrapper">
+    <ol class="blog__post-list">
+        <?php foreach ($block->getCustomBlogCollection() as $item): ?>
+            <li class="blog__post-item">
+                <header class="blog__post-header">
+                    <h2 class="blog__post-title" itemprop="headline">
+                        <a href="<?php echo "blog/" . $item['url_key'] . ".html";?>" rel="bookmark">
+                            <?= $item['name'] ?>
+                        </a>
+                    </h2>
+                    <p class="blog__post-meta">
+                        <time class="blog__post-meta-time" itemprop="datePublished">
+                            <i class="fa fa-fw fa-calendar"></i>
+                            <?= $item['publish_date_from']?>
+                        </time>
+                        <span class="blog__post-meta-author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                            <i class="fa fa-fw fa-user"></i>
+                            </span>
+                        <span class="blog__post-meta-comments">
+                            <i class="fa fa-fw fa-comments"></i>
+                            </span>
+                    </p>
+                </header>
+                <div class="blog__post-excerpt" itemprop="text">
+                    <a href="<?php echo "blog/" . $item['url_key'] . ".html";?>">
+                        <img  src="/pub/media/blog/<?= $item['thumbnail'] ?>">
+                    </a>
+                    <p><?= substr($item['description'], 0, 650) . "..." ?></p>
+                    <a class="read-more" href="<?php echo "blog/" . $item['url_key'] . ".html";?>">Read more...</a>
+                </div>
+                <footer class="blog__post-footer">
+                        <span class="blog__post-footer-categories">
+                        <i class="fa fa-fw fa-folder-open"></i>
+                        <?php foreach ($block->getCategoryByBlogId($item['id']) as $category): ?>
+                            <a href="/blog/category/<?= $category['url_key'] ?>.html" rel="category tag"><?= $category['name'] ?></a>
+                        <?php endforeach; ?>
+                        </span>
+                    <span class="blog__post-footer-tags">
+                            <i class="fa fa-fw fa-tags"></i>
+                           <?php foreach ($block->getTagsByBlogId($item['id']) as $tag): ?>
+                               <a href="http://blog.m2.mirasvit.com/blog/tag/shopping/" rel="tag"><?= $tag['tags'] ?></a>
+                           <?php endforeach; ?>
+                        </span>
+                </footer>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom">
+        <?php echo $block->getPagerHtml(); ?>
+    </div>
+<?php endif ?>
+</body>
+</html>
+

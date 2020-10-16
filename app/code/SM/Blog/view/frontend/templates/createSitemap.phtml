@@ -1,0 +1,63 @@
+<?php
+/**
+* @var \SM\Blog\Block\Index $block
+*/
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="<?php echo $block->getUrl("blog/index/save")?>" method="post">
+    <table style="width: 600px;">
+        <tr>
+            <td>
+                <lable>Sitemap type</lable>
+            </td>
+            <td>
+                <input type="text" name="sitemap_type">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <lable>Sitemap filename</lable>
+            </td>
+            <td>
+                <input type="text" name="sitemap_filename">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <lable>Sitemap path</lable>
+            </td>
+            <td>
+                <input type="text" name="sitemap_path">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <lable>Sitemap time</lable>
+            </td>
+            <td>
+                <input type="date" name="sitemap_time">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input type="submit" name="addSitemap" value="Submit">
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

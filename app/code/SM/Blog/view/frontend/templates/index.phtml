@@ -1,0 +1,156 @@
+<?php
+/**
+ * @var \SM\Blog\Block\Index $block
+ */
+//var_dump($block->getTagsByBlogId(1));
+//var_dump($block->getCustomBlogCollection());
+?>
+<html>
+<body>
+<head>
+    <link rel="stylesheet" type="text/css" media="all" href="http://blog.m2.mirasvit.com/static/version1587552010/_cache/merged/A.729bd1e954c6c9e6e54890fe6c0bf82a.min.css.pagespeed.cf.mID8sqjDck.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/css/styles-l.min.css">
+    <link rel="stylesheet" type="text/css" media="print" href="http://blog.m2.mirasvit.com/static/version1587552010/frontend/Magento/luma/en_US/css/A.print.min.css.pagespeed.cf.-KpZJJQ_YG.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+</head>
+    <div class="blog__post-list-wrapper">
+        <ol class="blog__post-list">
+            <?php foreach ($block->getCustomBlogCollection() as $item): ?>
+                <li class="blog__post-item">
+                    <header class="blog__post-header">
+                        <h2 class="blog__post-title" itemprop="headline">
+                            <a href="<?php echo "blog/" . $item['url_key'] . ".html";?>" rel="bookmark">
+                                <?= $item['name'] ?>
+                            </a>
+                        </h2>
+                        <p class="blog__post-meta">
+                            <time class="blog__post-meta-time" itemprop="datePublished">
+                                <i class="fa fa-fw fa-calendar"></i>
+                                <?= $item['publish_date_from']?>
+                            </time>
+                            <span class="blog__post-meta-author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                            <i class="fa fa-fw fa-user"></i>
+                            </span>
+                            <span class="blog__post-meta-comments">
+                            <i class="fa fa-fw fa-comments"></i>
+                            </span>
+                        </p>
+                    </header>
+                    <div class="blog__post-excerpt" itemprop="text">
+                        <a href="<?php echo "blog/" . $item['url_key'] . ".html";?>">
+                            <img  src="/pub/media/blog/<?= $item['thumbnail'] ?>">
+                        </a>
+                        <p><?= substr($item['description'], 0, 650) . "..." ?></p>
+                        <a class="read-more" href="<?php echo "blog/" . $item['url_key'] . ".html";?>">Read more...</a>
+                    </div>
+                    <footer class="blog__post-footer">
+                        <span class="blog__post-footer-categories">
+                        <i class="fa fa-fw fa-folder-open"></i>
+                        <?php foreach ($block->getCategoryByBlogId($item['id']) as $category): ?>
+                            <a href="/blog/category/<?= $category['url_key'] ?>.html" rel="category tag"><?= $category['name'] ?></a>
+                        <?php endforeach; ?>
+                        </span>
+                        <span class="blog__post-footer-tags">
+                            <i class="fa fa-fw fa-tags"></i>
+                           <?php foreach ($block->getTagsByBlogId($item['id']) as $tag): ?>
+                               <a href="/blog/tag/index/id/<?= $tag['blog_tags_id'] ?>" rel="tag"><?= $tag['tags'] ?></a>
+                           <?php endforeach; ?>
+                        </span>
+                    </footer>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom">
+            <?php echo $block->getPagerHtml(); ?>
+        </div>
+    <?php endif ?>
+<!--    <div class="sidebar sidebar-main">-->
+<!--        <div class="blog__sidebar-main">-->
+<!--            <div class="blog__sidebar-search">-->
+<!--                <form method="get" action="http://blog.m2.mirasvit.com/blog/search/">-->
+<!--                    <input type="search" name="q" placeholder="Search..." class="input-text required-entry" value="">-->
+<!--                    <button class="action primary" title="Submit" type="submit">-->
+<!--                        <span><i class="fa fa-fw fa-search"></i></span>-->
+<!--                    </button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="block block-collapsible-nav blog__sidebar-category-tree">-->
+<!--                <div class="title block-collapsible-nav-title">-->
+<!--                    <strong>Categories</strong>-->
+<!--                </div>-->
+<!--                <div class="block-collapsible-content content" id="block-collapsible-nav-blog">-->
+<!--                    <ul class="nav items">-->
+<!--                        <li class="nav item level-1 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/fashion.html">Fashion</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-2 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/fashionable-quotes.html">Fashionable Quotes</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-2 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/fashion-tips.html">Fashion Tips</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-1 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/gadgets.html">Gadgets</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-1 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/home-stretch.html">Home Stretch</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-1 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/newsroom.html">Newsroom</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-2 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/corporate-news.html">Corporate News</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav item level-2 ">-->
+<!--                            <a href="http://blog.m2.mirasvit.com/blog/case-study.html">Case Study</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--                        <div class="block blog__sidebar-recent">-->
+<!--                            <div class="block-title">-->
+<!--                                <strong>Recent Posts</strong>-->
+<!--                            </div>-->
+<!--                            <div class="block-content">-->
+<!--                                <ol class="items">-->
+<!--                                    <li class="item">-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/meet-blu-mobile-phones.html">-->
+<!--                                            <img src="http://blog.m2.mirasvit.com/media/blog/x47.jpg.pagespeed.ic.-OTmN0hlCL.webp" alt="Meet BLU Mobile Phones!" class="blog__post-featured-image" data-pagespeed-url-hash="710182920" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">-->
+<!--                                        </a>-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/meet-blu-mobile-phones.html">Meet BLU Mobile Phones!</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="item">-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/where-does-helpfulness-end.html">-->
+<!--                                            <img src="http://blog.m2.mirasvit.com/media/blog/x21.jpg.pagespeed.ic.jQxUN4822m.webp" alt="Where Does Helpfulness End?" class="blog__post-featured-image" data-pagespeed-url-hash="3388582716" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">-->
+<!--                                        </a>-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/where-does-helpfulness-end.html">Where Does Helpfulness End?</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="item">-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/five-designers-you-will-love.html">-->
+<!--                                            <img src="http://blog.m2.mirasvit.com/media/blog/x18.jpg.pagespeed.ic.Cqn0_2-eg9.webp" alt="Five Designers You Will Love!" class="blog__post-featured-image" data-pagespeed-url-hash="1230330880" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">-->
+<!--                                        </a>-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/five-designers-you-will-love.html">Five Designers You Will Love!</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="item">-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/let-s-get-brewing.html">-->
+<!--                                            <img src="http://blog.m2.mirasvit.com/media/blog/x23.jpg.pagespeed.ic.llKWNfshsK.webp" alt="Let’s Get Brewing" class="blog__post-featured-image" data-pagespeed-url-hash="3977582558" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">-->
+<!--                                        </a>-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/let-s-get-brewing.html">Let’s Get Brewing</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="item">-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/most-famous-hill-stations-in-the-country.html">-->
+<!--                                            <img src="http://blog.m2.mirasvit.com/media/blog/x31.jpg.pagespeed.ic.Ap61I1_3Ta.webp" alt="Most Famous Hill Stations In The Country" class="blog__post-featured-image" data-pagespeed-url-hash="3313366703" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">-->
+<!--                                        </a>-->
+<!--                                        <a href="http://blog.m2.mirasvit.com/blog/most-famous-hill-stations-in-the-country.html">Most Famous Hill Stations In The Country</a>-->
+<!--                                    </li>-->
+<!--                                </ol>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--    </div>-->
+<!--    </div-->
+</body>
+</html>
+

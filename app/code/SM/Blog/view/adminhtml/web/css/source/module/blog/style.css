@@ -1,0 +1,53 @@
+
+.tokens-container {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    height: auto;
+    min-height: 34px;
+    cursor: text;
+}
+.token {
+    background-color: #f5f5f5;
+    border: 1px solid #a79d95;
+    border-radius: 1px;
+    display: inline-block;
+    margin: .5rem .5rem 0 0;
+    position: relative;
+    vertical-align: middle;
+    padding: 0.3rem 2.4rem 0.4rem 1rem;
+    font-size: 1.2rem;
+}
+.dismiss {
+    position: absolute;
+    right: .5rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: #a79d95;
+}
+:after {
+     font-family: 'Admin Icons';
+     font-size: .5em;
+     content: '\e62f';
+ }
+
+
+.token-search {
+    padding: 0.6rem 1rem 0.6rem;
+    background-color: #fff;
+    border: 1px solid #adadad;
+    border-radius: 1px;
+    width: 100% !important;
+    margin-top: .5rem;
+}
+input {
+    padding: 0;
+    margin: 0;
+    line-height: 1em;
+    border: 0;
+    background: 0 0;
+    border-left: none;
+    border-right: none;
+    outline: 0;
+    width: 100%;
+}

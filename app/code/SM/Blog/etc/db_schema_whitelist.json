@@ -1,0 +1,35 @@
+{
+    "blog": {
+        "column": {
+            "id": true,
+            "short_description": true,
+            "description": true,
+            "status": true,
+            "thumbnail": true,
+            "gallery": true,
+            "publish_date_from": true,
+            "publish_date_to": true,
+            "tags": true,
+            "url_key": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "blog_category": {
+        "column": {
+            "id": true,
+            "name": true,
+            "description": true,
+            "parent_id": true,
+            "path": true,
+            "create_at": true,
+            "update_at": true,
+            "level": true,
+            "children_count": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

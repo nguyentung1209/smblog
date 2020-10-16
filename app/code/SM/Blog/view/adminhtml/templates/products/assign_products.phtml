@@ -1,0 +1,24 @@
+<?php
+/**
+ * @var \SM\Blog\Block\Adminhtml\AssignProducts $block
+ */
+?>
+<?php
+$blockGrid = $block->getBlockGrid();
+$gridJsObjectName = $blockGrid->getJsObjectName();
+?>
+<?= $block->getGridHtml() ?>
+<input type="hidden" name="sm_products" data-form-part="custom_form" id="rh_products" value=""  />
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "SM_Blog/js/assign-products": {
+                "selectedProducts":  <?= /* @escapeNotVerified */ $block->getProductsJson() ?>,
+                "gridJsObjectName": <?= /* @escapeNotVerified */ '"' . $gridJsObjectName . '"' ?: '{}' ?>
+            }
+        }
+    }
+</script>
+<script>
+    require('mage/apply/main').apply();
+</script>

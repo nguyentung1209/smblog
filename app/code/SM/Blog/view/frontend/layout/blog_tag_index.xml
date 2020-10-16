@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page cacheable="false" layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="blog_default"/>
+    <head>
+        <title>Blog NDT</title>
+    </head>
+    <referenceBlock name="content">
+        <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="blog_list_toolbarTop" template="SM_Blog::toolbarTop.phtml" cacheable="false">
+            <block class="Magento\Theme\Block\Html\Pager" name="toolbar.blog.sorter"/>
+        </block>
+        <block name="SM_Blog" class="SM\Blog\Block\Tag" template="tag.phtml" cacheable="false">
+        </block>
+        <referenceBlock name="catalog.compare.sidebar" remove="true">
+        </referenceBlock>
+        <referenceBlock name="wishlist_sidebar" remove="true">
+        </referenceBlock>
+    </referenceBlock>
+</page>

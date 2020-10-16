@@ -1,0 +1,407 @@
+<style>
+
+    .action-make-base{
+
+        display:none !important;
+
+    }
+
+
+
+    .admin__scope-old .product-actions {
+
+        padding: 5px 18px;
+
+    }
+
+    .admin__scope-old .product-actions .switcher {
+
+        display: inline-block;
+
+        vertical-align: top;
+
+        margin: 3px 0 6px 6px;
+
+    }
+
+
+
+    /* Image Management */
+
+    .admin__scope-old .images {
+
+        position: relative;
+
+        border: 2px dotted #ccc;
+
+        margin-bottom: 2px;
+
+        padding: 5px 0 0;
+
+    }
+
+
+
+    .admin__scope-old .images .image {
+
+        margin-bottom: 5px;
+
+    }
+
+
+
+    .admin__scope-old .image .spacer {
+
+        width: 100%;
+
+    }
+
+    .admin__scope-old .image.base-image:hover .image-label:before {
+
+        display: block;
+
+    }
+
+
+
+    .admin__scope-old .image.active {
+
+        box-shadow: 0 0 10px #2ea9ec;
+
+    }
+
+
+
+    .admin__scope-old .image .actions {
+
+        position: absolute;
+
+        top: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        left: 0;
+
+        text-align: center;
+
+        -webkit-touch-callout: none;
+
+        -webkit-user-select: none;
+
+        -khtml-user-select: none;
+
+        -moz-user-select: none;
+
+        -ms-user-select: none;
+
+        user-select: none;
+
+    }
+
+
+
+    .admin__scope-old .image .actions [class^="action-"] {
+
+        z-index: 10;
+
+    }
+
+
+
+    .admin__scope-old .image .actions [class^="action-"],
+
+    .admin__scope-old .image .image-label,
+
+    .admin__scope-old .image[data-image-hidden] .actions [class^="action-"],
+
+    .admin__scope-old .image.hidden-for-front .actions [class^="action-"] {
+
+        visibility: hidden;
+
+    }
+
+
+
+    .admin__scope-old .image:hover .actions [class^="action-"],
+
+    .admin__scope-old .image:hover .image-label,
+
+    .admin__scope-old .image.base-image .image-label,
+
+    .admin__scope-old .image[data-image-hidden]:hover .actions .action-delete,
+
+    .admin__scope-old .hidden-for-front:hover .actions [class^="action-"] {
+
+        visibility: visible;
+
+    }
+
+
+
+    .admin__scope-old .image .action-delete {
+
+        position: absolute;
+
+        left: 6px;
+
+        bottom: 6px;
+
+        z-index: 10;
+
+    }
+
+
+
+    .admin__scope-old .image .action-delete:before {
+
+        font-family: "Admin Icons";
+
+        content: "\e630";
+
+        font-size: 1.8rem;
+
+        line-height: inherit;
+
+        color: #9e9e9e;
+
+        overflow: hidden;
+
+        font-weight: normal;
+
+        display: inline-block;
+
+        vertical-align: middle;
+
+        text-align: center;
+
+    }
+
+
+
+    .admin__scope-old .image .action-make-base {
+
+        position: absolute;
+
+        bottom: 40px;
+
+        left: 10%;
+
+        right: 10%;
+
+        padding: 5px;
+
+        margin: auto;
+
+    }
+
+
+
+    .admin__scope-old .image.base-image .action-make-base {
+
+        display: none;
+
+    }
+
+
+
+    .admin__scope-old .image .file-row {
+
+
+
+        bottom: 0;
+
+        height: auto;
+
+        left: 0;
+
+        margin: auto;
+
+        overflow: hidden;
+
+        position: absolute;
+
+        right: 0;
+
+        text-indent: -999em;
+
+        top: 0;
+
+        width: auto;
+
+        z-index: 5;
+
+    }
+
+</style>
+<?php
+
+$htmlId = 'test';  // Pass any unique Html Id
+
+$fileMaxSize = '1024';     //  Pass Max upload image file
+
+$imagePlaceholderText = __('Click here or drag and drop to add images.');
+
+$deleteImageText = __('Delete image');
+
+$makeBaseText = __('Make Base');
+
+$hiddenText = __('Hidden');
+
+$imageManagementText = __('');
+
+$urlInterface = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\UrlInterface');
+
+$path = ''; //Pass path of your controller for saving the image after upload.
+
+$uploadUrl = $urlInterface->getUrl($path);
+
+$spacerImage = $urlInterface->getBaseUrl() . 'pub/static/adminhtml/Magento/backend/en_US/images/spacer.gif';
+
+?>
+
+<div id="media_gallery_content1" class="gallery ui-sortable"
+
+     data-mage-init='{"custombaseImage":{}}'
+
+     data-max-file-size="<?php /* @escapeNotVerified */ echo $fileMaxSize;?>"
+
+>
+
+    <div class="image image-placeholder">
+
+        <input type="file"
+
+               name="image"
+
+               data-url="<?php /* @escapeNotVerified */ echo $uploadUrl;?>"
+
+               multiple="multiple" />
+
+        <!--img class="spacer" src="<?php  echo $spacerImage;?>"/-->
+
+        <p class="image-placeholder-text"><?php /* @escapeNotVerified */ echo $imagePlaceholderText;?></p>
+
+    </div>
+
+    <script
+
+
+
+        id="media_gallery_content1-template"
+
+        data-template="image"
+
+        type="text/x-magento-template">
+
+        <div class="image item" data-role="image">
+
+            <img class="spacer" src="<?php /* @escapeNotVerified */ echo $spacerImage;?>"/>
+
+            <img
+
+                class="product-image"
+
+                src="<%- data.url %>"
+
+                data-position="<%- data.position %>"
+
+                alt="<%- data.label %>" />
+
+
+
+            <div class="actions">
+
+                <button
+
+                    type="button"
+
+                    class="action-delete"
+
+                    data-role="delete-button"
+
+                    onclick ="removeImage(this);"
+
+                    title="<?php  echo $deleteImageText;?>">
+
+                    <span><?php   echo $deleteImageText;?></span>
+
+                </button>
+
+                <input type = 'hidden' value="<%- data.file %>" name="comingsoon[image_name][]"  class="remove-img"/>
+
+                <button
+
+                    type="button"
+
+                    class="action-make-base"
+
+                    data-role="make-base-button"
+
+                    title="<?php   echo $makeBaseText;?>">
+
+                    <span><?php   echo $makeBaseText;?></span>
+
+                </button>
+
+                <div class="draggable-handle"></div>
+
+            </div>
+
+            <div class="image-label"></div>
+
+            <div class="image-fade"><span><?php   echo $hiddenText;?></span></div>
+
+        </div>
+
+
+
+    </script>
+
+</div>
+
+<span class="action-manage-images" data-activate-tab="image-management">
+
+    <span><?php   echo $imageManagementText;?></span>
+
+</span>
+
+<script>
+
+    function removeImage(eve){
+
+        var check   = jQuery('.remove-img').val();
+
+        var isclass = jQuery(eve).next().hasClass('remove-img');
+
+        if(isclass){
+
+            jQuery(eve).next().val(" ");
+
+        }
+
+
+
+    }
+
+    require([
+
+        'jquery'
+
+    ],function($){
+
+        'use strict';
+
+        $('[data-activate-tab=image-management]')
+
+            .on('click.toggleImageManagementTab', function() {
+
+                $('#product_info_tabs_image-management').trigger('click');
+
+            });
+
+    });
+
+</script>
+

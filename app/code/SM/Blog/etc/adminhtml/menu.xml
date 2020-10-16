@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SM_Blog::blog_manager" sortOrder="25" title="Blog Manager" module="SM_Blog" resource="SM_Blog::blog_manager"/>
+        <add id="SM_Blog::view" title="List Blog" module="SM_Blog" action="blog" resource="SM_Blog::view" parent="SM_Blog::blog_manager"/>
+        <add id="SM_Blog::categories" title="Categories" module="SM_Blog" action="blog/category/index" resource="SM_Blog::categories" parent="SM_Blog::blog_manager"/>
+    </menu>
+</config>

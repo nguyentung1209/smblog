@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page  layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="blog_default"/>
+    <head>
+        <title>Blog NDT</title>
+    </head>
+    <referenceBlock name="content">
+        <block name="SM_Blog" class="SM\Blog\Block\Detail" template="detail.phtml" cacheable="false">
+        </block>
+        <referenceBlock name="catalog.compare.sidebar" remove="true">
+        </referenceBlock>
+        <referenceBlock name="wishlist_sidebar" remove="true">
+        </referenceBlock>
+    </referenceBlock>
+</page>

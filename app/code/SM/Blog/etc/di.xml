@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="SM\Blog\Api\SitemapRepositoryInterface" type="SM\Blog\Model\SitemapRepository"/>
+    <preference for="SM\Blog\Api\Data\SitemapInterface" type="SM\Blog\Model\Sitemap"/>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="change_product_price" type="SM\Blog\Plugin\ChangePriceProduct"/>
+    </type>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="login_to_addToCart" type="SM\Blog\Plugin\LoginToAddToCart"/>
+    </type>
+</config>
